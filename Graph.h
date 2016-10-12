@@ -89,23 +89,32 @@ public:
 	//Insert new Vertex using int data instead of Vertex*
 	bool InsertVertex(int);
 
+	//Check if a Vertex exists in the graph
+	bool VertexExist(Vertex* v);
+
+	//Check if a Vertex exists in the graph using the Vertex data
+	bool VertexExist(int vData);
+
 	//Get Vettex* from an int data
 	Vertex* GetVertex(int);
 
 	//Insert new Edge into the graph using 2 Vertex
 	bool InsertEdge(Vertex* from, Vertex* to);
 
-	//Create an Edge betweem two notes with [fromData] and [toData]
+	//Create an Edge betweem two nodes with [fromData] and [toData]
 	bool InsertEdge(int fromData, int toData);
 
-	//Insert new Edge into the graph using a Vertex and an Graph
+	//Insert new Edge into the graph using a Vertex and an Edge
 	bool InsertEdge(Vertex* from, Edge* from_to);
 
-	//Check if a Vertex exists in the graph
-	bool VertexExist(Vertex* v);
+	//Remove an Edge from the graph using 2 Vertex
+	bool RemoveEdge(Vertex* from, Vertex* to);
 
-	//Check if a Vertex exists in the graph using the Vertex data
-	bool VertexExist(int vData);
+	//Remove the Edge betweem two nodes with [fromData] and [toData]
+	bool RemoveEdge(int fromData, int toData);
+
+	//Remove an Edge using a Vertex and an Edge
+	bool RemoveEdge(Vertex* from, Edge* from_to);
 };
 
 #endif
