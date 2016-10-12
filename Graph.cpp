@@ -209,3 +209,4 @@ bool Graph::InsertEdge(Vertex* from, Edge* from_to){
 
 	return InsertEdgeFromVertices(from, to);
 }
+
