@@ -15,6 +15,7 @@
 //***************************//
 
 Vertex::Vertex() {
+	data = 0;
 	nextVertex = NULL;
 	inDegree = 0;
 	outDegree = 0;
@@ -100,6 +101,7 @@ bool Graph::InsertVertex(int vData) {
 	return true;
 }
 
+
 bool Graph::VertexExist(Vertex* v) {
 	Vertex* tmp = gHead;
 	while (tmp != NULL) {
@@ -162,6 +164,8 @@ bool Graph::InsertEdgeFromVertices(Vertex* from, Vertex* to) {
 			eTmp = eTmp->nextEdge;
 		}
 		Edge* newEdge = new Edge(to);
+		from->outDegree++;
+		to->inDegree++;
 		edgeTail->nextEdge = newEdge;
 	}
 	return true;
@@ -209,4 +213,3 @@ bool Graph::InsertEdge(Vertex* from, Edge* from_to){
 
 	return InsertEdgeFromVertices(from, to);
 }
-

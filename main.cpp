@@ -7,7 +7,9 @@ using namespace std;
 
 void testAVL() {
 	int arr[5] = { 1, 3, 3, 4, 5 };
+	
 	AVLTree tree = AVLTree::ArrayToAVL(arr, 5);
+	cout << tree.root->HasNode(4) << endl;
 	tree.PrintAVL();
 	tree.AVLDelete(3);
 	tree.PrintAVL();
@@ -21,12 +23,61 @@ void testAVL() {
 }
 
 void testHeap() {
-	const int arr_size = 8;
-	int arr[arr_size] = { 7, 8, 3, 1, 2, 11, 4, 5 };
+	const int arr_size = 5;
+	int arr[arr_size] = { 7, 8, 2, 33, 5};
 	Heap heap = Heap(arr, arr_size);
 	heap.PrintHeapTree();
-	heap.InsertHeap(33);
+	heap.InsertHeap(44);
 	heap.PrintHeapTree();
+	int dataOut = 1;
+	cout << heap.DataExist(33) << endl;
+	heap.DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap.PrintHeapTree();
+	heap.DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap.PrintHeapTree();
+	
+	heap.DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap.PrintHeapTree();
+	heap.DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap.PrintHeapTree();
+	heap.DeleteHeap(dataOut);
+
+	heap.PrintHeapTree();
+	heap.DeleteHeap(dataOut);
+	cout << heap.DataExist(45) << endl;
+
+	/*Heap* heap = new Heap;
+	heap->InsertHeap(3);
+	heap->InsertHeap(5);
+	heap->InsertHeap(33);
+	heap->InsertHeap(4);
+	heap->InsertHeap(7);
+
+	heap->PrintHeapTree();
+
+	int dataOut = 1;
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();
+	heap->DeleteHeap(dataOut);
+	cout << endl << endl;
+	heap->PrintHeapTree();*/
 }
 
 void testGraph() {
@@ -51,5 +102,5 @@ void testGraph() {
 }
 
 int main() {
-	testGraph();
+	testHeap();
 }

@@ -16,7 +16,7 @@ Node::Node(){
 	data = 0;
 	left = NULL;
 	right = NULL;
-	balance = 0;
+	balance = EQUAL;
 }
 
 Node::Node(int _data) {
@@ -36,4 +36,15 @@ void Node::PrintNode(int indent) {
 	}
 	cout << data << endl;
 	left->PrintNode(indent + 1);
+}
+
+bool Node::HasNode(int nodeData) {
+	if (this == NULL) {
+		return false;
+	}
+	if (data == nodeData) {
+		return true;
+	}
+	return (right->HasNode(nodeData) ||
+		left->HasNode(nodeData));
 }

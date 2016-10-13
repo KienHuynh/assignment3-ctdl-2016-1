@@ -29,24 +29,28 @@ void Heap::ReHeapDown(int position) {
 	int leftChild = position * 2 + 1;
 	int rightChild = position * 2 + 2;
 	int largeChild = 0;
-	if (leftChild <= last && heapPtr[rightChild] > heapPtr[leftChild]) {
-		largeChild = rightChild;
-	}
-	else {
-		largeChild = leftChild;
-	}
-	if (heapPtr[largeChild] > heapPtr[position]) {
-		swap(largeChild, position);
-		ReHeapDown(largeChild);
+	if (leftChild <= last) {
+		if (rightChild <= last && heapPtr[rightChild] > heapPtr[leftChild]) {
+			largeChild = rightChild;
+		}
+		else {
+			largeChild = leftChild;
+		}
+		if (heapPtr[largeChild] > heapPtr[position]) {
+			swap(largeChild, position);
+			ReHeapDown(largeChild);
+		}
 	}
 }
 
 bool Heap::ArrToHeap(int* arr, int length){
 	size = 0;
 	last = -1;
-	heapPtr = new int[length];
+	heapPtr = new int[HEAP_MAX];
 	for (int i = 0; i < length; i++) {
-		heapPtr[i] = arr[i];
+		if (!DataExist(arr[i])) {
+			heapPtr[i] = arr[i];
+		}
 	}
 	for (int i = 0; i < length; i++) {
 		if (i == HEAP_MAX) {
@@ -61,7 +65,7 @@ bool Heap::ArrToHeap(int* arr, int length){
 
 Heap::Heap() {
 	heapPtr = NULL;
-	last = 0;
+	last = -1;
 	maxSize = HEAP_MAX;
 	size = 0;
 }
@@ -81,7 +85,7 @@ int Heap::operator [](const int i){
 };
 
 bool Heap::IsEmpty() {
-	if (heapPtr == NULL) {
+	if (heapPtr == NULL || size == 0) {
 		return true;
 	}
 	return false;
@@ -114,17 +118,47 @@ void Heap::PrintHeapTreeRe(int position, int indent) {
 	}
 }
 
+bool Heap::DataExist(int data) {
+	for (int i = 0; i < size; i++) {
+		if (heapPtr[i] == data) {
+			return true;
+		}
+	}
+	return false;
+}
+
 void Heap::PrintHeapTree() {
-	PrintHeapTreeRe(0, 0);
+	if (size > 0) PrintHeapTreeRe(0, 0);
 }
 
 bool Heap::InsertHeap(int data) {
-	if (IsFull()) {
+	if (IsFull() || DataExist(data)) {
 		return false;
+	}
+	if (heapPtr == NULL) {
+		heapPtr = new int[HEAP_MAX];
 	}
 	last++;
 	size++;
 	heapPtr[last] = data;
 	ReHeapUp(last);
+	return true;
+}
+
+bool Heap::DeleteHeap(int &dataOut) {
+	if (IsEmpty()) {
+		return false;
+	}
+	dataOut = heapPtr[0];
+	heapPtr[0] = heapPtr[last];
+	last--;
+	size--;
+	if (size == 0) {
+		delete heapPtr;
+		heapPtr = NULL;
+	}
+	else {
+		ReHeapDown(0);
+	}
 	return true;
 }

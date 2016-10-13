@@ -11,24 +11,72 @@
 #ifndef NODE_H
 #define NODE_H
 #include <iostream>
-// Create enumeration to indicate node balance
-enum { LEFT, EQUAL, RIGHT };
 
+/**
+*\file Node.h
+*/
+
+/**
+* \enum Balance
+* \brief Helper enum for member \c balance of Class Node
+*/
+enum Balance { LEFT, EQUAL, RIGHT };
+
+/**
+* \class Node
+* \brief Class for Node of a Tree
+*
+* This is implemented accordingly to the book Data Structures: A Pseudocode Approach with C.\n
+* Building class for the AVLTree class.\n
+*/
 class Node {
 public:
-	int data;
-	Node* left;
-	Node* right;
-	int balance;
 
-	//Default constructor
+	/**
+	* \var data
+	* \brief Node data.
+	*/
+	int data;
+
+	/**
+	* \var left
+	* \brief Left child.
+	*/
+	Node* left;
+
+	/**
+	* \var right
+	* \brief Right child.
+	*/
+	Node* right;
+
+	/**
+	* \var balance
+	* \brief Balance at this particular Node, use BALANCE enum.
+	*/
+	Balance balance;
+	
+	
+	/**
+	* \brief Default constructor. \n Create a Node with \c data=0.
+	*/
 	Node();
 
-	//Constructor that takes an integer as node data
+	/**
+	* \brief Constructor that takes an integer as node data
+	*/
 	Node(int);
 
-	//Print the tree from this node
+	/**
+	* \brief Print this Node and every of its children in LNR order.
+	*/
 	void PrintNode(int indent = 0);
+
+	/**
+	* \brief Check if this Node or its children has \c nodeData.
+	*/
+	bool HasNode(int nodeData);
+
 };
 
 #endif
