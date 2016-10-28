@@ -27,7 +27,7 @@ using namespace std;
 * Although data duplication is common in real-life applications, it is avoided here to ease the workload of this assignment.\n
 */
 class AVLTree {
-private:
+protected:
 	/**
 	* \cond
 	*/

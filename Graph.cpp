@@ -211,5 +211,36 @@ bool Graph::InsertEdge(Vertex* from, Edge* from_to){
 		InsertVertex(to);
 	}
 
-	return InsertEdgeFromVertices(from, to);
+	if (from->firstEdge == NULL) {
+		from->firstEdge = from_to;
+		return true;
+	}
+	else {
+		//Check if an Edge already exists
+		Edge* eTmp = from->firstEdge;
+		Edge* edgeTail = eTmp;
+
+		if (from->data == to->data) {
+			//We do not allow a Vertex to point to itself
+			//(It would be difficult for students to manage)
+			cout << "\nA vertex should not point to itself\n";
+			cout << "Edge insertion failed\n";
+			return false;
+		}
+
+		while (eTmp != NULL) {
+			if (eTmp->destination->data == to->data) {
+				//This edge already exists, nothing to do here
+				cout << "\nEdge already exists\n";
+				cout << "Edge insertion failed\n";
+				return false;
+			}
+			edgeTail = eTmp;
+			eTmp = eTmp->nextEdge;
+		}
+		from->outDegree++;
+		to->inDegree++;
+		edgeTail->nextEdge = from_to;
+	}
+	return true;
 }

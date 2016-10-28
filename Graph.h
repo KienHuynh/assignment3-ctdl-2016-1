@@ -13,7 +13,8 @@
 */
 
 #ifdef __GNUC__
-#define DEPRECATED(func) func __attribute__ ((deprecated))
+#pragma message("g++ used")
+#define DEPRECATED(func, message) func __attribute__ ((deprecated(message)))
 #elif defined(_MSC_VER)
 #define DEPRECATED(func, message) __declspec(deprecated(message)) func
 #else
@@ -49,6 +50,7 @@ class Edge;
 * <b>Note that two vertices connected by nextVertex DOESN'T MEAN that they are connected in the graph G.</b> \n
 * <b>Vertex A actually connects to Vertex B only if and only if there is an Edge in \c firstEdge linked list that point to B.</b> \n
 */
+
 class Vertex {
 public:
 	/**
@@ -104,8 +106,6 @@ public:
 //Linked list that contains Edges from a Vertex to other Vertices
 //This class helps we to connect Vertices in a graph
 class Edge {
-private:
-	
 public:
 	/**
 	* \var destination
@@ -141,12 +141,13 @@ public:
 * Although data duplication is common in real-life applications, it is avoided here to ease the workload of this assignment.\n
 */
 class Graph {
-private:
+public:
 	/**
 	* \var gHead
-	* \brief Store the first Vertex inserted into this Graph
+	* \brief Store the first Vertex inserted into this Graph. \N
+	* Brought gHead back to public to allow easier coding for students
 	*/
-	Vertex* gHead; 
+	Vertex* gHead;
 
 	/**
 	* \var size
@@ -159,7 +160,6 @@ private:
 	*/
 	bool InsertEdgeFromVertices(Vertex* from, Vertex* to);
 
-public:
 	/**
 	* \brief Default constructor.
 	*/
@@ -234,6 +234,11 @@ public:
 	* \brief Remove an Edge using a Vertex and an Edge
 	*/
 	bool RemoveEdge(Vertex* from, Edge* from_to);
+
+	/**
+	* \brief Print the graph
+	*/
+	void Print();
 };
 
 #endif

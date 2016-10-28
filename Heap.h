@@ -34,7 +34,7 @@ using namespace std;
 * Note that in this class, you are not allowed to access all of its member variables
 */
 class Heap{
-private:
+protected:
 	/**
 	* \cond
 	*/
@@ -63,23 +63,14 @@ public:
 	* Duplicate data in \c arr will be skipped
 	* \param arr integer array of length \c len
 	* \param len integer indicates the length of \c arr
-	* \return \c true if create successfully
-	* \return \c false if \c arr length exceeds HEAP_MAX
+	* \return A newly created heap
 	*/
-	bool ArrToHeap(int* arr, int len);
+	static Heap ArrayToHeap(int* arr, int len);
 
 	/**
 	* \brief Default constructor with no argument
 	*/
 	Heap();
-
-	/**
-	* \brief Default constructor that create a new Heap from array \c arr \n
-	* Duplicate data in \c arr will be skipped
-	* \param arr integer array of length \c len
-	* \param len integer indicates the length of \c arr
-	*/
-	Heap(int* arr, int len);
 
 	/**
 	* \brief Check if the Heap is empty or not. \n

@@ -5,9 +5,9 @@
 #include "InputReader.h"
 using namespace std;
 
+
 void testAVL() {
 	int arr[5] = { 1, 3, 3, 4, 5 };
-	
 	AVLTree tree = AVLTree::ArrayToAVL(arr, 5);
 	cout << tree.root->HasNode(4) << endl;
 	tree.PrintAVL();
@@ -25,7 +25,9 @@ void testAVL() {
 void testHeap() {
 	const int arr_size = 5;
 	int arr[arr_size] = { 7, 8, 2, 33, 5};
-	Heap heap = Heap(arr, arr_size);
+	Heap heap = Heap::ArrayToHeap(arr, arr_size);
+	cout << heap[0];
+	//Heap heap = Heap(arr, arr_size);
 	heap.PrintHeapTree();
 	heap.InsertHeap(44);
 	heap.PrintHeapTree();
@@ -101,6 +103,51 @@ void testGraph() {
 	g.InsertEdge(1, 1);
 }
 
-int main() {
-	testHeap();
+class TestEdge:public Edge{
+public:
+	int length;
+
+	TestEdge(Vertex* des): Edge(des) {
+		destination = des;
+		length = 1;
+	};
+};
+
+void readInput() {
+	int *arr;
+	int count;
+	ReadArrayInput("E2.txt", arr, count);
+	cout << arr[count - 1];
+
+	int *vertexDataArr;
+	int vertexCount;
+	int **edgeDataArr;
+	int edgeCount;
+	//edgeDataArr is an array that store Edges
+	//Each row of edgeDataArr indicates an edge
+	//For example: edgeDataArr[0][0] = 5; edgeDataArr[0][1] = 7 means that there is an Edge goes from 5 to 7.
+	ReadArrayInputOfGraph("E5.txt", vertexDataArr, vertexCount, edgeDataArr, edgeCount);
+	
+	int** adjmat;
+	int vcount;
+	ReadAdjacencyMat("E18.txt", adjmat, vcount);
+	for (int i = 0; i < vcount; i++) {
+		for (int j = 0; j < vcount; j++) {
+			cout << adjmat[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void testTestEdge() {
+	Vertex a = Vertex(1);
+	Vertex b = Vertex(-22);
+	Graph G = Graph(&a);
+	TestEdge e = TestEdge(&b);
+	G.InsertEdge(&a, &e);
+	TestEdge e1 = *(TestEdge*) G.gHead->firstEdge;
+}
+
+int main(int argc, char * argv[]) {
+	testTestEdge();
 }

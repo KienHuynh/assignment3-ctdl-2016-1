@@ -43,24 +43,25 @@ void Heap::ReHeapDown(int position) {
 	}
 }
 
-bool Heap::ArrToHeap(int* arr, int length){
-	size = 0;
-	last = -1;
-	heapPtr = new int[HEAP_MAX];
+Heap Heap::ArrayToHeap(int* arr, int length){
+	Heap heap = Heap();
+	heap.size = 0;
+	heap.last = -1;
+	heap.heapPtr = new int[HEAP_MAX];
 	for (int i = 0; i < length; i++) {
-		if (!DataExist(arr[i])) {
-			heapPtr[i] = arr[i];
+		if (!heap.DataExist(arr[i])) {
+			heap.heapPtr[i] = arr[i];
 		}
 	}
 	for (int i = 0; i < length; i++) {
 		if (i == HEAP_MAX) {
-			return false;
+			break;
 		}
-		ReHeapUp(i);
-		size++;
-		last++;
+		heap.ReHeapUp(i);
+		heap.size++;
+		heap.last++;
 	}
-	return true;
+	return heap;
 }
 
 Heap::Heap() {
@@ -68,10 +69,6 @@ Heap::Heap() {
 	last = -1;
 	maxSize = HEAP_MAX;
 	size = 0;
-}
-
-Heap::Heap(int* arr, int length) {
-	ArrToHeap(arr, length);
 }
 
 int Heap::operator [](const int i){
