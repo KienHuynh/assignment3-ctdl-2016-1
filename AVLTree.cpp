@@ -10,18 +10,20 @@
 
 #include "AVLTree.h"
 
-void AVLTree::RotateRight() {
+Node* AVLTree::RotateRight() {
 	Node* tmpPtr = root->left;
 	root->left = tmpPtr->right;
 	tmpPtr->right = root;
 	root = tmpPtr;
+	return root;
 }
 
-void AVLTree::RotateLeft() {
+Node* AVLTree::RotateLeft() {
 	Node* tmpPtr = root->right;
 	root->right = tmpPtr->left;
 	tmpPtr->left = root;
 	root = tmpPtr;
+	return root;
 }
 
 void AVLTree::LeftBalance(bool& taller) {
@@ -39,6 +41,7 @@ void AVLTree::LeftBalance(bool& taller) {
 			leftTree->balance = EQUAL;
 		}
 		else if (rightTree->balance == EQUAL) {
+			root->balance = EQUAL;
 			leftTree->balance = EQUAL;
 		}
 		else {
@@ -46,7 +49,7 @@ void AVLTree::LeftBalance(bool& taller) {
 			leftTree->balance = LEFT;
 		}
 		rightTree->balance = EQUAL;
-		AVLTree(root->left).RotateLeft();
+		root->left = AVLTree(root->left).RotateLeft();
 		RotateRight();
 		taller = false;
 	}
@@ -67,6 +70,7 @@ void AVLTree::RightBalance(bool& taller) {
 			rightTree->balance = EQUAL;
 		}
 		else if (leftTree->balance == EQUAL) {
+			root->balance = EQUAL;
 			rightTree->balance = EQUAL;
 		}
 		else {
@@ -74,7 +78,7 @@ void AVLTree::RightBalance(bool& taller) {
 			rightTree->balance = RIGHT;
 		}
 		leftTree->balance = EQUAL;
-		AVLTree(root->right).RotateRight();
+		root->right = AVLTree(root->right).RotateRight();
 		RotateLeft();
 		taller = false;
 	}
@@ -144,7 +148,7 @@ void AVLTree::DeleteRightBalance(bool& shorter) {
 				rightTree->balance = EQUAL;
 			}
 			leftTree->balance = EQUAL;
-			AVLTree(root->right).RotateRight();
+			root->right = AVLTree(root->right).RotateRight();
 			RotateLeft();
 		}
 		else {
@@ -187,7 +191,7 @@ void AVLTree::DeleteLeftBalance(bool& shorter) {
 				leftTree->balance = EQUAL;
 			}
 			rightTree->balance = EQUAL;
-			AVLTree(root->left).RotateLeft();
+			root->left = AVLTree(root->left).RotateLeft();
 			RotateRight();
 		}
 		else {
@@ -303,6 +307,7 @@ AVLTree AVLTree::ArrayToAVL(int arr[], int length) {
 	for (int i = 0; i < length; i++) {
 		Node* newPtr = new Node(arr[i]);
 		tree.AVLInsert(newPtr);
+		tree.PrintAVL();
 	}
 	return tree;
 }
