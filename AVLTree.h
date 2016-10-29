@@ -31,9 +31,9 @@ protected:
 	/**
 	* \cond
 	*/
-	void RotateRight();
+	Node* RotateRight();
 
-	void RotateLeft();
+	Node* RotateLeft();
 
 	void LeftBalance(bool& taller);
 
