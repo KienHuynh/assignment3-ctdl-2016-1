@@ -29,9 +29,9 @@ Node* AVLTree::RotateLeft() {
 void AVLTree::LeftBalance(bool& taller) {
 	Node* leftTree = root->left;
 	if (leftTree->balance == LEFT) {
-		RotateRight();
 		root->balance = EQUAL;
 		leftTree->balance = EQUAL;
+		RotateRight();
 		taller = false;
 	}
 	else {
@@ -58,9 +58,9 @@ void AVLTree::LeftBalance(bool& taller) {
 void AVLTree::RightBalance(bool& taller) {
 	Node* rightTree = root->right;
 	if (rightTree->balance == RIGHT) {
-		RotateLeft();
 		root->balance = EQUAL;
 		rightTree->balance = EQUAL;
+		RotateLeft();
 		taller = false;
 	}
 	else {
@@ -307,7 +307,7 @@ AVLTree AVLTree::ArrayToAVL(int arr[], int length) {
 	for (int i = 0; i < length; i++) {
 		Node* newPtr = new Node(arr[i]);
 		tree.AVLInsert(newPtr);
-		tree.PrintAVL();
+		//tree.PrintAVL();
 	}
 	return tree;
 }
