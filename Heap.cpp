@@ -97,7 +97,7 @@ bool Heap::IsFull() {
 
 void Heap::PrintHeapLinear() {
 	for (int i = 0; i < size; i++) {
-		cout << heapPtr[0] << " ";
+		cout << heapPtr[i] << " ";
 	}
 	cout << endl;
 }
