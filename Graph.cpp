@@ -137,6 +137,9 @@ Vertex* Graph::GetVertex(int vData) {
 
 bool Graph::InsertEdgeFromVertices(Vertex* from, Vertex* to) {
 	if (from->firstEdge == NULL) {
+		if (from->data == to->data) {
+			return false;
+		}
 		from->firstEdge = new Edge(to);
 		return true;
 	}
@@ -212,6 +215,9 @@ bool Graph::InsertEdge(Vertex* from, Edge* from_to){
 	}
 
 	if (from->firstEdge == NULL) {
+		if (from->data == to->data) {
+			return false;
+		}
 		from->firstEdge = from_to;
 		return true;
 	}
