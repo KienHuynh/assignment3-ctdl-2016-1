@@ -140,6 +140,8 @@ bool Graph::InsertEdgeFromVertices(Vertex* from, Vertex* to) {
 		if (from->data == to->data) {
 			return false;
 		}
+		from->outDegree++;
+		to->inDegree++;
 		from->firstEdge = new Edge(to);
 		return true;
 	}
@@ -218,6 +220,8 @@ bool Graph::InsertEdge(Vertex* from, Edge* from_to){
 		if (from->data == to->data) {
 			return false;
 		}
+		from->outDegree++;
+		to->inDegree++;
 		from->firstEdge = from_to;
 		return true;
 	}
