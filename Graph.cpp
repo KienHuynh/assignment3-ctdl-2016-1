@@ -63,17 +63,19 @@ bool Graph::InsertVertex(Vertex* v) {
 	}
 
 	Vertex* pTemp = gHead;
-	while (pTemp->nextVertex != NULL) {
+	Vertex* pTail = NULL;
+	while (pTemp != NULL) {
 		//To avoid confusion, we do not allow Nodes with same data in our graph
 		if (pTemp->data == v->data) {
 			cout << "\nDifferent Vertices in a Graph should have different data\n";
 			cout << "Vertex insertion with data = " << pTemp->data << " failed\n";
 			return false;
 		}
+		pTail = pTemp;
 		pTemp = pTemp->nextVertex;
 	}
 	size++;
-	pTemp->nextVertex = v;
+	pTail->nextVertex = v;
 	return true;
 }
 
