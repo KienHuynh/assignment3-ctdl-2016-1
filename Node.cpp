@@ -26,6 +26,13 @@ Node::Node(int _data) {
 	balance = EQUAL;
 }
 
+Node::~Node() {
+	delete left;
+	left = NULL;
+	delete right;
+	right = NULL;
+}
+
 void Node::PrintNode(int indent) {
 	if (this == NULL) {
 		return;

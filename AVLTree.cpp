@@ -10,6 +10,7 @@
 
 #include "AVLTree.h"
 
+
 Node* AVLTree::RotateRight() {
 	Node* tmpPtr = root->left;
 	root->left = tmpPtr->right;
@@ -268,6 +269,11 @@ AVLTree::AVLTree(Node* _root) {
 	root = _root;
 }
 
+AVLTree::~AVLTree() {
+	delete root;
+	root = NULL;
+}
+
 bool AVLTree::AVLInsert(int newData) {
 	if (NodeExist(newData)) {
 		return false;
@@ -302,14 +308,11 @@ void AVLTree::PrintAVL() {
 	root->PrintNode();
 }
 
-AVLTree AVLTree::ArrayToAVL(int arr[], int length) {
-	AVLTree tree = AVLTree();
+void AVLTree::ArrayToAVL(int arr[], int length) {
 	for (int i = 0; i < length; i++) {
 		Node* newPtr = new Node(arr[i]);
-		tree.AVLInsert(newPtr);
-		//tree.PrintAVL();
+		AVLInsert(newPtr);
 	}
-	return tree;
 }
 
 bool AVLTree::IsEmpty() {
