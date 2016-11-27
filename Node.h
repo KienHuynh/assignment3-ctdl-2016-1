@@ -1,4 +1,4 @@
-/***************************************************
+/**********	*****************************************
 	DO NOT MODIFY THIS FILE
 	Data Structure & Algorithm Assignment 3
 	Node.h

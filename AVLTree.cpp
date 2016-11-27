@@ -10,7 +10,7 @@
 
 #include "AVLTree.h"
 
-VLTree::AVLTree() {
+AVLTree::AVLTree() {
 	root = NULL;
 }
 
