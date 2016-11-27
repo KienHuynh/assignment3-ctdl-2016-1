@@ -30,8 +30,19 @@ enum Balance { LEFT, EQUAL, RIGHT };
 * Building class for the AVLTree class.\n
 */
 class Node {
+private:
+	static void RotateRight(Node*&);
+	static void RotateLeft(Node*&);
+	static void LeftBalance(Node*&, bool &);
+	static void RightBalance(Node*&, bool &);
+	
+	static void DeleteRightBalance(Node*&, bool&);
+	static void DeleteLeftBalance(Node*&, bool&);
+	
 public:
 
+	static Node* AVLInsert(Node*&, Node*, bool&);
+	static Node* AVLDelete(Node*&, int, bool&, bool&);
 	/**
 	* \var data
 	* \brief Node data.

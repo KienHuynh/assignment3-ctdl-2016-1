@@ -288,10 +288,9 @@ Node::~Node() {
 }
 
 void Node::PrintNode(int indent) {
-	// always evaluate to false
-	// if (this == NULL) {
-	// 	return;
-	// }
+	if (this == NULL) {
+		return;
+	}
 	right->PrintNode(indent + 1);
 	for (int i = 0; i < indent; i++) {
 		cout << "\t";
@@ -301,10 +300,9 @@ void Node::PrintNode(int indent) {
 }
 
 bool Node::HasNode(int nodeData) {
-	// always evaluate to false
-	// if (this == NULL) {
-	// 	return;
-	// }
+	if (this == NULL) {
+		return false;
+	}
 	if (data == nodeData) {
 		return true;
 	}
