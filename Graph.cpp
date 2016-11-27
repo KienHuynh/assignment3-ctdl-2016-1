@@ -36,7 +36,7 @@ Vertex::~Vertex() {
 	Edge *e = firstEdge;
 	while (e != NULL) {
 		Edge *tmpE = e;
-		e->nextEdge;
+		e = e->nextEdge;
 		delete tmpE;
 	}
 }
