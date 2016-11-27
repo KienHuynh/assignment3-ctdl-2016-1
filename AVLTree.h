@@ -13,7 +13,7 @@
 */
 
 #ifndef AVLTREE_H
-#define ALVTREE_H
+#define AVLTREE_H
 #include <iostream>
 #include "Node.h"
 using namespace std;

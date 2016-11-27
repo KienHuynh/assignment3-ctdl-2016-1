@@ -177,7 +177,7 @@ void AVLTree::DeleteLeftBalance(bool& shorter) {
 	}
 	else {
 		Node* leftTree = root->left;
-		if (leftTree->balance = RIGHT) {
+		if ((leftTree->balance = RIGHT)) {
 			Node* rightTree = leftTree->right;
 			if (rightTree->balance == RIGHT) {
 				leftTree->balance = LEFT;
@@ -284,7 +284,7 @@ bool AVLTree::AVLInsert(int newData) {
 	return true;
 }
 
-bool AVLTree::AVLInsert(Node* newPtr) 
+bool AVLTree::AVLInsert(Node* newPtr)
 {
 	if (newPtr == NULL) {
 		return false;
@@ -325,9 +325,9 @@ bool AVLTree::IsEmpty() {
 }
 
 bool AVLTree::NodeExist(int nodeData) {
-	return root->HasNode(nodeData);
+	return root && root->HasNode(nodeData);
 }
 
 bool AVLTree::NodeExist(Node* node) {
-	return root->HasNode(node->data);
+	return root && root->HasNode(node->data);
 }
