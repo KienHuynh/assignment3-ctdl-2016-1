@@ -68,7 +68,7 @@ Graph::~Graph() {
 	Vertex* v = gHead;
 	while (v != NULL) {
 		Vertex *tmpV = v;
-		v->nextVertex;
+		v = v->nextVertex;
 		delete tmpV;
 	}
 }
