@@ -230,7 +230,7 @@ Node* Node::AVLDelete(Node*& root, int delData, bool& shorter, bool& success){
 	}
 	else {
 		Node* deleteNode = root;
-		
+
 		if (deleteNode->right == NULL) {
 			Node* newRoot = root->left;
 			success = true;
@@ -291,12 +291,14 @@ void Node::PrintNode(int indent) {
 	if (this == NULL) {
 		return;
 	}
-	right->PrintNode(indent + 1);
+	if (right)
+		right->PrintNode(indent + 1);
 	for (int i = 0; i < indent; i++) {
 		cout << "\t";
 	}
 	cout << data << endl;
-	left->PrintNode(indent + 1);
+	if (left)
+		left->PrintNode(indent + 1);
 }
 
 bool Node::HasNode(int nodeData) {
@@ -306,6 +308,6 @@ bool Node::HasNode(int nodeData) {
 	if (data == nodeData) {
 		return true;
 	}
-	return (right->HasNode(nodeData) ||
-		left->HasNode(nodeData));
+	return ((right && right->HasNode(nodeData)) ||
+		(left && left->HasNode(nodeData)));
 }

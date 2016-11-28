@@ -107,7 +107,7 @@ bool Graph::InsertVertex(int vData) {
 		size++;
 		return true;
 	}
-	
+
 	Vertex* pTemp = gHead;
 	Vertex* pTail = NULL;
 	while (pTemp != NULL) {
