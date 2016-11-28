@@ -39,6 +39,7 @@ Vertex::~Vertex() {
 		e = e->nextEdge;
 		delete tmpE;
 	}
+	firstEdge = NULL;
 }
 
 //*************************//
@@ -68,9 +69,10 @@ Graph::~Graph() {
 	Vertex* v = gHead;
 	while (v != NULL) {
 		Vertex *tmpV = v;
-		v->nextVertex;
+		v = v->nextVertex;
 		delete tmpV;
 	}
+	gHead = NULL;
 }
 
 bool Graph::InsertVertex(Vertex* v) {
